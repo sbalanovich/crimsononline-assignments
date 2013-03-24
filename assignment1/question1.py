@@ -1,3 +1,6 @@
+import re
+import collections
+import sys
 
 def common_words(filename):
     """question 1a
@@ -6,15 +9,15 @@ def common_words(filename):
     should open the file, count the number of occurrences of each word, and
     return a sorted list of the most common words.
     """
-    pass
+    return map(lambda x: x[0], common_words_tuple(filename, sys.maxint))
 
 def common_words_min(filename, min_chars):
     """question 1b
 
     Modify this function to take a second argument that specifies the
     minimum number of characters long a word can be to be counted.
-    """
-    pass
+    """ 
+    return [word for word in common_words(filename) if len(word) >= min_chars]
 
 def common_words_tuple(filename, min_chars):
     """question 1c
@@ -24,7 +27,8 @@ def common_words_tuple(filename, min_chars):
         (word, number of occurrences)
     Of course, the list of tuples should still be sorted as in part a.
     """
-    pass
+    words = re.findall('\w+', open(filename).read())
+    return collections.Counter(words).most_common()
 
 def common_words_safe(filename, min_chars):
     """question 1d
@@ -32,4 +36,8 @@ def common_words_safe(filename, min_chars):
     Modify your function so that it catches the IOError exception and prints
     a friendly error message.
     """
+    try:
+        common_words_tuple(filename, min_chars)
+    except IOError:
+        return "File address not found. Try again"
     pass

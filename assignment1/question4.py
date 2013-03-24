@@ -15,5 +15,5 @@ Practice creating a new Python project. In a separate directory, you should:
 Don't feel obligated to spend more than about ten minutes on your test program.
 We just want to see that you can use the toolchain.
 """
-
+#Again, unfortunately, pip does not appear to be working
 GITHUB_URL = "http://github.com/YOU/PROJECT"
